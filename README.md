@@ -10,7 +10,7 @@ a default constructor: io.avaje.modules.example.GeneratedProvider
 ```
 
 ## Expected result:
-I should be able to get the `requires` directives from the `ModuleElement` without failing compilation Code should generated and compile without error when `ModuleElement#getDirectives` is called.
+I should be able to get the `requires` directives from the `ModuleElement` without failing compilation.
 
 ## Actual Result:
 The code generates fine, and I can see the `requires` directives from the element, but `module-info.java` suddenly fails to compile. 
