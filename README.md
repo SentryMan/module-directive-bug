@@ -3,6 +3,12 @@ Showcase annotation processing bug/feature???.
 
 When this line is uncommented: https://github.com/SentryMan/module-directive-bug/blob/5d4a51eb83ed4e4a58c0a08ddf0b0454d5d72a17/module-processor-core/src/main/java/io/avaje/modules/internal/Generator.java#L39 the code somehow fails to compile even though the code generates as normal.
 
+```
+Caused by: org.apache.maven.plugin.compiler.CompilationFailureException: Compilation failure
+/M:/Dev/module-directive-bug/blackbox-test-module/src/main/java/module-info.java:[6,41] the service implementation does not have 
+a default constructor: io.avaje.modules.example.GeneratedProvider
+```
+
 ## Expected result:
 I should be able to get the `requires` directives from the `ModuleElement` without failing compilation Code should generated and compile without error when `ModuleElement#getDirectives` is called.
 
