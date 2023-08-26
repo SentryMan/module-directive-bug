@@ -21,3 +21,24 @@ The code generates fine, and I can see the `requires` directives from the elemen
 2. Uncomment the code linked above located in `/module-processor-core/src/main/java/io/avaje/modules/internal/Generator.java`
 3. Run `mvn clean compile` to see the error
 4. Comment the line to see that everything compiles
+
+## Workaround
+We can use `Filer` to retrieve the module-info file and read it line by line. Since we don't call `ModuleElement` methods compilation will work as expected. 
+```java
+      try (var inputStream =
+              new URI(
+                      processingEnv
+                          .getFiler()
+                          .getResource(StandardLocation.SOURCE_PATH, "", "module-info.java")
+                          .toUri()
+                          .toString())
+                  .toURL()
+                  .openStream();
+          var reader = new BufferedReader(new InputStreamReader(inputStream))) {
+
+        reader.lines(); // parse the strings and do something
+
+      } catch (Exception e) {
+        // can't read module
+      }
+```
