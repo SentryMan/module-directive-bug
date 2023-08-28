@@ -36,26 +36,26 @@ public final class Generator extends AbstractProcessor {
   public boolean process(Set<? extends TypeElement> tes, RoundEnvironment renv) {
 
     findModule(tes, renv);
-    //this breaks everything
+    // this breaks everything
     System.out.println(moduleElement.getDirectives());
-    if (renv.processingOver()) {
-      try (var writer =
-          processingEnv
-              .getFiler()
-              .createSourceFile("io.avaje.modules.example.GeneratedProvider")
-              .openWriter()) {
-        writer.append(
-            """
+
+    try (var writer =
+        processingEnv
+            .getFiler()
+            .createSourceFile("io.avaje.modules.example.GeneratedProvider")
+            .openWriter()) {
+      writer.append(
+          """
             package io.avaje.modules.example;
 
             public class GeneratedProvider implements io.avaje.modules.example.ServiceInterface {
         		public GeneratedProvider(){}
             }
             """);
-      } catch (final IOException e) {
-        e.printStackTrace();
-      }
+    } catch (final IOException e) {
+      e.printStackTrace();
     }
+
     return false;
   }
 
