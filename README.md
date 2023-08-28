@@ -13,8 +13,7 @@ a default constructor: io.avaje.modules.example.GeneratedProvider
 I should be able to get the `requires` directives from the `ModuleElement` without failing compilation.
 
 ## Actual Result:
-The code generates fine, and I can see the `requires` directives from the element, but `module-info.java` suddenly fails to compile. 
-
+The code generates fine into `/blackbox-test-module/target/generated-sources/annotations/io/avaje/modules/example/GeneratedProvider.java`, and I can see the `requires` directives logs from the element, but `module-info.java` suddenly fails to compile. 
 
 ## How to reproduce:
 1. Clone this repo
