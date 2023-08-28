@@ -23,11 +23,11 @@ The code generates fine into `/blackbox-test-module/target/generated-sources/ann
 ## Workaround
 ###  Manually Parse `module-info.java`
 
-We can use `Filer` to retrieve the module-info file and read it line by line. Since we don't call `ModuleElement` methods compilation will work as expected. 
+We can use `Filer` to retrieve the module-info file and read it line by line. Since we don't call `ModuleElement` methods, compilation will work as expected. 
 ```java
       try (var inputStream =
               processingEnv
-                  .getFiler
+                  .getFiler()
                   .getResource(StandardLocation.SOURCE_PATH, "", "module-info.java")
                   .toUri()
                   .toURL()
