@@ -1,7 +1,7 @@
 # module-directive-bug
 Showcase annotation processing bug/feature???.
 
-When this line is uncommented: https://github.com/SentryMan/module-directive-bug/blob/5d4a51eb83ed4e4a58c0a08ddf0b0454d5d72a17/module-processor-core/src/main/java/io/avaje/modules/internal/Generator.java#L39 the code somehow fails to compile even though the code generates as normal.
+When `ModuleElement#getDirectives` is called: https://github.com/SentryMan/module-directive-bug/blob/9a08bffe97abd9d80218ee9df29fdf7c50b8e688/module-processor-core/src/main/java/io/avaje/modules/internal/Generator.java#L40 the code somehow fails to compile even though the code generates as normal.
 
 ```
 Caused by: org.apache.maven.plugin.compiler.CompilationFailureException: Compilation failure
@@ -18,11 +18,12 @@ The code generates fine, and I can see the `requires` directives from the elemen
 
 ## How to reproduce:
 1. Clone this repo
-2. Uncomment the code linked above located in `/module-processor-core/src/main/java/io/avaje/modules/internal/Generator.java`
-3. Run `mvn clean compile` to see the error
-4. Comment the line to see that everything compiles
+2. Run `mvn clean compile` to see the error
+3. If you comment out the line shown above everything compiles as expected (but then we can't use Module element)
 
 ## Workaround
+###  Manually Parse `module-info.java`
+
 We can use `Filer` to retrieve the module-info file and read it line by line. Since we don't call `ModuleElement` methods compilation will work as expected. 
 ```java
       try (var inputStream =
