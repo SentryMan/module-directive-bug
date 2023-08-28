@@ -47,7 +47,9 @@ public final class Generator extends AbstractProcessor {
             """
             package io.avaje.modules.example;
 
-            public class GeneratedProvider implements io.avaje.modules.example.ServiceInterface {}
+            public class GeneratedProvider implements io.avaje.modules.example.ServiceInterface {
+        		public GeneratedProvider(){}
+            }
             """);
       } catch (final IOException e) {
         e.printStackTrace();
