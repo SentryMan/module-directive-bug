@@ -9,7 +9,7 @@ Caused by: org.apache.maven.plugin.compiler.CompilationFailureException: Compila
 a default constructor: io.avaje.modules.example.GeneratedProvider
 ```
 
-When this line is commented, it compiles as normal. (But then we can't use Module element for anything except error location hints)
+When this line is commented, it compiles as normal, but then we can't use `ModuleElement` for anything except error location hints.
 
 ## Expected result:
 I should be able to get the `requires` directives from the `ModuleElement` without failing compilation.
