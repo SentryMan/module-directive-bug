@@ -36,7 +36,8 @@ public final class Generator extends AbstractProcessor {
   public boolean process(Set<? extends TypeElement> tes, RoundEnvironment renv) {
 
     findModule(tes, renv);
-    // System.out.println(moduleElement.getDirectives()); this somehow fails everything????
+    //this breaks everything
+    System.out.println(moduleElement.getDirectives());
     if (renv.processingOver()) {
       try (var writer =
           processingEnv
