@@ -26,8 +26,8 @@ The code generates fine, and I can see the `requires` directives from the elemen
 We can use `Filer` to retrieve the module-info file and read it line by line. Since we don't call `ModuleElement` methods compilation will work as expected. 
 ```java
       try (var inputStream =
-              CTX.get()
-                  .filer
+              processingEnv
+                  .getFiler
                   .getResource(StandardLocation.SOURCE_PATH, "", "module-info.java")
                   .toUri()
                   .toURL()
