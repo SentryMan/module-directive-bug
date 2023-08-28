@@ -9,6 +9,8 @@ Caused by: org.apache.maven.plugin.compiler.CompilationFailureException: Compila
 a default constructor: io.avaje.modules.example.GeneratedProvider
 ```
 
+When this line is commented, it compiles as normal. (But then we can't use Module element for anything except error location hints)
+
 ## Expected result:
 I should be able to get the `requires` directives from the `ModuleElement` without failing compilation.
 
@@ -18,7 +20,6 @@ The code generates fine into `/blackbox-test-module/target/generated-sources/ann
 ## How to reproduce:
 1. Clone this repo
 2. Run `mvn clean compile` to see the error
-3. If you comment out the line shown above everything compiles as expected (but then we can't use Module element)
 
 ## Workaround
 ###  Manually Parse `module-info.java`
